@@ -14,7 +14,7 @@ Add a script entry to `package.json` (npm puts the `node_modules/.bin` directory
 
 ```json
 {
-  scripts: {
+  "scripts": {
     "gh-pages-travis": "gh-pages-travis"
   }
 }
