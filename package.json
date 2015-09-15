@@ -1,0 +1,21 @@
+{
+  "name": "gh-pages-travis",
+  "version": "1.0.0",
+  "description": "CLI to deploy a folder to gh-pages branch of current repo as part of travis build",
+  "bin": "./gh-pages-travis",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pghalliday/gh-pages-travis.git"
+  },
+  "keywords": [
+    "travis-ci",
+    "gh-pages",
+    "deploy"
+  ],
+  "author": "Peter Halliday <pghalliday@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pghalliday/gh-pages-travis/issues"
+  },
+  "homepage": "https://github.com/pghalliday/gh-pages-travis"
+}
