@@ -14,11 +14,9 @@ Add a script entry to `package.json` (npm puts the `node_modules/.bin` directory
 
 ```json
 {
-...
-scripts: {
-  'gh-pages-travis': 'gh-pages-travis'
-}
-...
+  scripts: {
+    "gh-pages-travis": "gh-pages-travis"
+  }
 }
 ```
 
@@ -59,7 +57,7 @@ Make sure you delete the `id_rsa` and `id_rsa.pub` files and add the `id_rsa.enc
 
 Lastly update your `.travis.yml` to configure the script and run it after a successful build
 
-```
+```yml
 after_sucess:
   - npm run gh-pages-travis
 env:
