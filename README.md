@@ -20,7 +20,7 @@ Add a script entry to `package.json` (npm puts the `node_modules/.bin` directory
 }
 ```
 
-Create your `gh-pages` branch and add the following `.travis.yml` to prevent travis build it
+Create your `gh-pages` branch and add the following `.travis.yml` to prevent travis from building it
 
 ```yml
 branches:
@@ -36,7 +36,7 @@ ssh-keygen -t rsa -C "your_email@example.com"
 
 This will generate the `id_rsa` and `id_rsa.pub` files
 
-Add `id_rsa.pub` as a deploy key for your Github repository
+**Add `id_rsa.pub` as a deploy key for your Github repository**
 
 Install the travis cli client
 
@@ -47,13 +47,13 @@ gem install travis
 Login the travis cli and encrypt the private key, `id_rsa`
 
 ```
-travis Login
+travis login
 travis encrypt-file id_rsa --add
 ```
 
 This will add the decrypt command to recreate `id_rsa` in the current folder as a `before_install` script
 
-Make sure you delete the `id_rsa` and `id_rsa.pub` files and add the `id_rsa.enc` to the repository.
+**NB. Make sure you delete the `id_rsa` and `id_rsa.pub` files and add the `id_rsa.enc` to the repository.**
 
 Lastly update your `.travis.yml` to configure the script and run it after a successful build
 
@@ -68,3 +68,5 @@ env:
     - SOURCE_DIR="docs"
     - DEPLOY_BRANCH="master"
 ```
+
+The `DEPLOY_BRANCH` setting ensures that the github pages are only deployed from builds of that branch
