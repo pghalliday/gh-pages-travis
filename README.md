@@ -62,11 +62,19 @@ after_sucess:
   - npm run gh-pages-travis
 env:
   global:
-    - SSH_KEY="id_rsa"
-    - GIT_NAME="Peter Halliday"
-    - GIT_EMAIL="pghalliday@gmail.com"
-    - SOURCE_DIR="docs"
     - DEPLOY_BRANCH="master"
+    - SOURCE_DIR="doc"
+    - TARGET_BRANCH="gh-pages"
+    - SSH_KEY="id_rsa"
+    - GIT_NAME="travis"
+    - GIT_EMAIL="deploy@travis-ci.org"
 ```
 
-The `DEPLOY_BRANCH` setting ensures that the github pages are only deployed from builds of that branch
+All the environment variables are optional but it's likely that 1 or more will need to be set.
+
+- `DEPLOY_BRANCH` defaults to `master`. It ensures that the github pages are only deployed from builds of this branch.
+- `SOURCE_DIR` defaults to `doc`. It is likely that this will need to be changed to the directory in which the actual site source is built.
+- `TARGET_BRANCH` defaults to `gh-pages`. Typically this can be changed to `master` to deploy to the master branch of a `xxxxx.github.io` repository.
+- `SSH_KEY` defaults to `id_rsa`. It would only need to be set if a different name was used for the SSH key to that documented above.
+- `GIT_NAME` defaults to `travis`. This is the name that will be used for git commits, you probably want to change this.
+- `GIT_EMAIL` defaults to `deploy@travis-ci.org`. This is the email that will be used for git commits, you probably want to change this.

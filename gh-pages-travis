@@ -1,8 +1,23 @@
 #!/bin/bash
 set -e
  
+# Deploy built docs from this branch
+DEPLOY_BRANCH="$DEPLOY_BRANCH" || "master"
+ 
+# Deploy built docs from this directory
+SOURCE_DIR="$SOURCE_DIR" || "doc"
+ 
 # Deploy built docs to this branch
-TARGET_BRANCH=gh-pages
+TARGET_BRANCH="$TARGET_BRANCH" || "gh-pages"
+ 
+# Use this SSH key to push to github
+SSH_KEY="$SSH_KEY" || "id_rsa"
+ 
+# Use this git user name in commits
+GIT_NAME="$GIT_NAME" || "travis"
+ 
+# Use this git user email in commits
+GIT_EMAIL="$GIT_EMAIL" || "deploy@travis-ci.org"
  
 if [ ! -d "$SOURCE_DIR" ]; then
   echo "SOURCE_DIR ($SOURCE_DIR) does not exist, build the source directory before deploying"
@@ -15,19 +30,11 @@ if [ -n "$TRAVIS_BUILD_ID" ]; then
   # When running on Travis we need to use SSH to deploy to GitHub
   #
   # The following converts the repo URL to an SSH location,
-  # decrypts the SSH key and sets up the Git config with
+  # adds the SSH key and sets up the Git config with
   # the correct user name and email (globally as this is a
   # temporary travis environment)
   #
-  # Set the following environment variables in the travis configuration (.travis.yml)
-  #
-  #   DEPLOY_BRANCH    - The only branch that Travis should deploy from
-  #   ENCRYPTION_LABEL - The label assigned when encrypting the SSH key using travis encrypt-file
-  #   GIT_NAME         - The Git user name
-  #   GIT_EMAIL        - The Git user email
-  #
   echo DEPLOY_BRANCH: $DEPLOY_BRANCH
-  echo ENCRYPTION_LABEL: $ENCRYPTION_LABEL
   echo GIT_NAME: $GIT_NAME
   echo GIT_EMAIL: $GIT_EMAIL
   if [ "$TRAVIS_BRANCH" != "$DEPLOY_BRANCH" ]; then
