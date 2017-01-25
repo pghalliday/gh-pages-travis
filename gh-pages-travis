@@ -35,6 +35,9 @@ if [ -n "$TRAVIS_BUILD_ID" ]; then
   # temporary travis environment)
   #
   echo DEPLOY_BRANCH: $DEPLOY_BRANCH
+  echo SOURCE_DIR: $SOURCE_DIR
+  echo TARGET_BRANCH: $TARGET_BRANCH
+  echo SSH_KEY: $SSH_KEY
   echo GIT_NAME: $GIT_NAME
   echo GIT_EMAIL: $GIT_EMAIL
   if [ "$TRAVIS_BRANCH" != "$DEPLOY_BRANCH" ]; then
