@@ -2,22 +2,22 @@
 set -e
  
 # Deploy built docs from this branch
-DEPLOY_BRANCH="$DEPLOY_BRANCH" || "master"
+: ${DEPLOY_BRANCH:=master}
  
 # Deploy built docs from this directory
-SOURCE_DIR="$SOURCE_DIR" || "doc"
+: ${SOURCE_DIR:=doc}
  
 # Deploy built docs to this branch
-TARGET_BRANCH="$TARGET_BRANCH" || "gh-pages"
+: ${TARGET_BRANCH:=gh-pages}
  
 # Use this SSH key to push to github
-SSH_KEY="$SSH_KEY" || "id_rsa"
+: ${SSH_KEY:=id_rsa}
  
 # Use this git user name in commits
-GIT_NAME="$GIT_NAME" || "travis"
+: ${GIT_NAME:=travis}
  
 # Use this git user email in commits
-GIT_EMAIL="$GIT_EMAIL" || "deploy@travis-ci.org"
+: ${GIT_EMAIL:=deploy@travis-ci.org}
  
 if [ ! -d "$SOURCE_DIR" ]; then
   echo "SOURCE_DIR ($SOURCE_DIR) does not exist, build the source directory before deploying"
