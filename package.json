@@ -1,8 +1,8 @@
 {
   "name": "gh-pages-travis",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "CLI to deploy a folder to gh-pages branch of current repo as part of travis build",
-  "bin": "./gh-pages-travis",
+  "bin": "bin/gh-pages-travis.sh",
   "repository": {
     "type": "git",
     "url": "https://github.com/pghalliday/gh-pages-travis.git"
