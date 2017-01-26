@@ -10,6 +10,12 @@ Install as a development dependency
 npm install --save-dev gh-pages-travis
 ```
 
+or add to your `Gemfile` if using ruby
+
+```
+gem 'gh-pages-travis'
+```
+
 Add a script entry to `package.json` (npm puts the `node_modules/.bin` directory on the path when it runs scripts)
 
 ```json
@@ -19,6 +25,8 @@ Add a script entry to `package.json` (npm puts the `node_modules/.bin` directory
   }
 }
 ```
+
+This is not necessary if using ruby
 
 Create your `gh-pages` branch and add the following `.travis.yml` to prevent travis from building it
 
@@ -55,11 +63,14 @@ This will add the decrypt command to recreate `id_rsa` in the current folder as 
 
 **NB. Make sure you delete the `id_rsa` and `id_rsa.pub` files and add the `id_rsa.enc` to the repository.**
 
-Lastly update your `.travis.yml` to configure the script and run it after a successful build
+Lastly update your `.travis.yml` to configure the script and run it
 
 ```yml
-after_sucess:
+script:
+  # run with npm if added to package.json
   - npm run gh-pages-travis
+  # run with bundler if added to Gemfile
+  - bundle exec gh-pages-travis
 env:
   global:
     - DEPLOY_BRANCH="master"
@@ -78,3 +89,20 @@ All the environment variables are optional but it's likely that 1 or more will n
 - `SSH_KEY` defaults to `id_rsa`. It would only need to be set if a different name was used for the SSH key to that documented above.
 - `GIT_NAME` defaults to `travis`. This is the name that will be used for git commits, you probably want to change this.
 - `GIT_EMAIL` defaults to `deploy@travis-ci.org`. This is the email that will be used for git commits, you probably want to change this.
+
+## Publishing
+
+Before publishing a new version of this tool, increment the version number in `package.json`
+
+Then to publish the NPM module
+
+```
+npm publish
+```
+
+To build and publish the ruby gem
+
+```
+gem build gh-pages-travis.gemspec
+gem push gh-pages-travis-<version>.gem
+```
