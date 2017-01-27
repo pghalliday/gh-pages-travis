@@ -39,7 +39,7 @@ branches:
 Generate a deploy key for your Github repository
 
 ```
-ssh-keygen -t rsa -C "your_email@example.com"
+ssh-keygen -t rsa -C "your_email@example.com" -N "" -f id_rsa
 ```
 
 This will generate the `id_rsa` and `id_rsa.pub` files
