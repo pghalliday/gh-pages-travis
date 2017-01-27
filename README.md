@@ -4,6 +4,8 @@ CLI to deploy a folder to gh-pages branch of current repo as part of travis buil
 
 ## Usage
 
+### Installation
+
 Install as a development dependency
 
 ```
@@ -16,17 +18,7 @@ or add to your `Gemfile` if using ruby
 gem 'gh-pages-travis'
 ```
 
-Add a script entry to `package.json` (npm puts the `node_modules/.bin` directory on the path when it runs scripts)
-
-```json
-{
-  "scripts": {
-    "gh-pages-travis": "gh-pages-travis"
-  }
-}
-```
-
-This is not necessary if using ruby
+### Set up the GitHub pages branch
 
 Create your `gh-pages` branch and add the following `.travis.yml` to prevent travis from building it
 
@@ -35,6 +27,10 @@ branches:
   except:
     - gh-pages
 ```
+
+If deploying to a `xxxx.github.io` project then you should create a new branch to run `gh-pages-travis` in (eg. `deploy`) and then add the above config to the `master` branch changing it to except the `master` branch.
+
+### Create and encrypt the deploy key
 
 Generate a deploy key for your Github repository
 
@@ -65,12 +61,14 @@ This will add the decrypt command to recreate `id_rsa` in the current folder as 
 
 **NBB. Also make sure that the `id_rsa` file that is recreated by Travis in the root of your project does not get deployed to the target branch - ie. don't add it to the build directory (for Jekyll this may mean that it should be ignored explicitly if building from the root directory).**
 
+### Configure the deploy branch
+
 Lastly update your `.travis.yml` to configure the script and run it
 
 ```yml
 script:
-  # run with npm if added to package.json
-  - npm run gh-pages-travis
+  # run from node_modules if added to package.json
+  - node_modules/.bin/gh-pages-travis
   # run with bundler if added to Gemfile
   - bundle exec gh-pages-travis
 env:
