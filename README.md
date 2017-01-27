@@ -57,7 +57,7 @@ travis encrypt-file id_rsa --add
 
 This will add the decrypt command to recreate `id_rsa` in the current folder as a `before_install` script
 
-**NB. Make sure you delete the `id_rsa` and `id_rsa.pub` files and add the `id_rsa.enc` to the repository.**
+**NB. Make sure you delete/ignore the `id_rsa` and `id_rsa.pub` files and add the `id_rsa.enc` to the repository.**
 
 **NBB. Also make sure that the `id_rsa` file that is recreated by Travis in the root of your project does not get deployed to the target branch - ie. don't add it to the build directory (for Jekyll this may mean that it should be ignored explicitly if building from the root directory).**
 
