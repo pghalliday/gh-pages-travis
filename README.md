@@ -44,7 +44,7 @@ ssh-keygen -t rsa -C "your_email@example.com" -N "" -f id_rsa
 
 This will generate the `id_rsa` and `id_rsa.pub` files
 
-**Add `id_rsa.pub` as a deploy key for your Github repository**
+**NB. Add `id_rsa.pub` as a deploy key for your Github repository**
 
 Install the travis cli client
 
